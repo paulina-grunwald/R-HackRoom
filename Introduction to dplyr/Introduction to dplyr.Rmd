@@ -45,13 +45,21 @@ Now we can check class of flights dataframe:
 ```{r}
 class(flights)
 ```
+As we can see it was converted to tbl_df dataframe.
 
+Now let's take a glimpse() of our data.
+```{r}
+glimpse(flights)
+```
+Glimpse() makes it possible to see every column in a data frame. Very useful:)!
 
-Now we will display dimentions of the dataset:
+Another way we can display dimension of the dataset is to use dim():
 ```{r}
 dim(flights)
 ```
 As we can see the dataset has 19 collumns and 336776 rows.
+
+
 
 Dplyr implements the following verbs useful for data manipulation:
 
@@ -60,10 +68,19 @@ Dplyr implements the following verbs useful for data manipulation:
 * mutate(): add new columns
 * summarise(): reduce each group to a smaller number of summary statistics
 * arrange(): re-order the rows
+* group_by 
 
+##1.1 Select chosen columns using select()##
 
-#Select all columns that end with time
+We can select desired columns by typing their name:
+
 ```{r}
+ flights[,c('dep_delay','arr_time','origin')]
+```
+
+
+```{r}
+#Select all columns that end with time
 select(flights, ends_with("time"))
 ```
 
