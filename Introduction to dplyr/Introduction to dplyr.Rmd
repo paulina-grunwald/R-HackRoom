@@ -41,6 +41,12 @@ flights <- tbl_df(flights)
 flights
 ```
 
+Now we can check class of flights dataframe:
+```{r}
+class(flights)
+```
+
+
 Now we will display dimentions of the dataset:
 ```{r}
 dim(flights)
