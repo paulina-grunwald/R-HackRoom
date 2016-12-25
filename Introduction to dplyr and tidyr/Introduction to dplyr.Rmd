@@ -125,8 +125,8 @@ select(flights,one_of(col))
 flights %>% select(one_of(col))
 ```
 
-Instead writing code provided above we can use pipe operator %>%
 
+Instead writing code provided above we can use pipe operator %>%
 You can use keboard shorecut for %>%
 Mac: Cmd+Shift+M
 Win: Ctrl+Shift+M
