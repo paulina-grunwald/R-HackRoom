@@ -125,20 +125,22 @@ select(flights,one_of(col))
 flights %>% select(one_of(col))
 ```
 
-
-#Instead writing code provided above we can use pipe operator %>%
-dataset_name %>% select(starts_with("dep"))
-Example:
-```{r}
-flights %>% select(ends_with("time"))
-```
+Instead writing code provided above we can use pipe operator %>%
 
 You can use keboard shorecut for %>%
 Mac: Cmd+Shift+M
 Win: Ctrl+Shift+M
 
 
-###Selecting Rows from the dataframe###
+Example: dataset_name %>% select(starts_with("dep"))
+
+```{r}
+flights %>% select(ends_with("time"))
+```
+
+##1.2 Select chosen columns using select()##
+
+Selecting Rows from the dataframe
 dataset_name %>% filter(col1 > X)
 dataset_name %>% filter(col1 %in% c("X", "Y"))
 
@@ -147,7 +149,7 @@ You can combain two expressions using comma:
 dataset_name %>% filter(col1 > X, 
   col1 %in% c("X", "Y"))
 
-##Logical tests in R:##
+Logical tests in R:
 COMPARISON:
 < less than
 > greater than
