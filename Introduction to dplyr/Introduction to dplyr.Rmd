@@ -1,0 +1,104 @@
+---
+title: "DPLYR"
+author: "Paulina Grunwald - www.R-HackRoom.com"
+date: "December 21, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#load dplyr library in R     
+library(dplyr)
+```
+
+#Select()
+select(name_of_dataframe, col1, col2)
+This function will make possible selecting chosen columns from the dataframe
+
+If you put -before the name od the column, all the collumns except that one will be displayed.
+select(storms, -storm)
+
+If you want to select colums from col1:col4 you can use : sign.
+select(storms, wnd:date)
+
+//Select comes with the set of helper functions:
+
+- Selects everything but
+: Selects range
+contains() Selects columns where name contains a char. string
+ends_with() Select columns whose name ends with a string
+everything() Select every column
+matches() Select columns whose name matches a reg. expression
+num_range() Select columns named x1, x2, x3, x4, x5
+one_of() Select colums whose names are in a group of names
+starts_with() Select columns whose names start with a char. string
+
+```{r}
+install.packages("nycflights13", repos='http://cran.us.r-project.org')
+```
+
+```{r}
+library("nycflights13")
+#view flights dataset
+flights
+```
+
+###EXTRACTION OF THE DATA WITH DELECT FUNCION###
+
+#Select all columns that end with time
+```{r}
+select(flights, ends_with("time"))
+```
+
+#Select columns that contain "_"
+```{r}
+select(flights, contains("_"))
+```
+
+#Select columns that contain delay 
+
+```{r}
+select(flights, contains("delay"))
+```
+
+#Instead writing code provided above we can use pipe operator %>%
+dataset_name %>% select(starts_with("dep"))
+Example:
+```{r}
+flights %>% select(ends_with("time"))
+```
+
+You can use keboard shorecut for %>%
+Mac: Cmd+Shift+M
+Win: Ctrl+Shift+M
+
+
+###Selecting Rows from the dataframe###
+dataset_name %>% filter(col1 > X)
+dataset_name %>% filter(col1 %in% c("X", "Y"))
+
+You can combain two expressions using comma:
+
+dataset_name %>% filter(col1 > X, 
+  col1 %in% c("X", "Y"))
+
+##Logical tests in R:##
+COMPARISON:
+< less than
+> greater than
+== equal to
+<=
+>=
+!= Not equal to
+%in% Group membersit
+is.na
+!is.na
+LOGIC:
+& and
+| or
+! mpt
+any any true
+all all true
+
+### DERIVE NEW VARIABLES FROM THE DATAFRAME
+
+mutate() function
