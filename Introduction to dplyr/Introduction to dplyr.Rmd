@@ -5,44 +5,56 @@ date: "December 21, 2016"
 output: html_document
 ---
 
+#####MANAGING AND MUNGING DATA IN R USING DPLYR AND TIDYR#####
+
+###1. Using DPLYR in R
+
+Dplyr is a new package which provides a set of tools for efficiently manipulating datasets in R. You can install and then load dplyr from the library.
+
+
+```{r}
+#Install dplyr package
+install.packages("dplyr")
+```
+
 ```{r setup, include=FALSE}
-#load dplyr library in R     
+#Load dplyr from the library
 library(dplyr)
 ```
 
-#Select()
-select(name_of_dataframe, col1, col2)
-This function will make possible selecting chosen columns from the dataframe
-
-If you put -before the name od the column, all the collumns except that one will be displayed.
-select(storms, -storm)
-
-If you want to select colums from col1:col4 you can use : sign.
-select(storms, wnd:date)
-
-//Select comes with the set of helper functions:
-
-- Selects everything but
-: Selects range
-contains() Selects columns where name contains a char. string
-ends_with() Select columns whose name ends with a string
-everything() Select every column
-matches() Select columns whose name matches a reg. expression
-num_range() Select columns named x1, x2, x3, x4, x5
-one_of() Select colums whose names are in a group of names
-starts_with() Select columns whose names start with a char. string
+In this example we will use nycflights13 dataset which can be installed from Cran repository.
 
 ```{r}
+#Install nycflights13 dataset
 install.packages("nycflights13", repos='http://cran.us.r-project.org')
 ```
+```{r}
+#Load nycflights13 from the library
+library("nycflights13")
+```
+
+Now we will wrap our dataframe with tbls using special tbl dataframe - tbl_df . Tbl_df is function in dplyr and it used to prevents long table outputs when accidentally calling the data frame. Tbls also shows the size of the dataset () and will display amount of data that will fit in your console.
 
 ```{r}
-library("nycflights13")
-#view flights dataset
+flights <- tbl_df(flights)
+#print flights dataframe
 flights
 ```
 
-###EXTRACTION OF THE DATA WITH DELECT FUNCION###
+Now we will display dimentions of the dataset:
+```{r}
+dim(flights)
+```
+As we can see the dataset has 19 collumns and 336776 rows.
+
+Dplyr implements the following verbs useful for data manipulation:
+
+* select(): focus on a subset of variables
+* filter(): focus on a subset of rows
+* mutate(): add new columns
+* summarise(): reduce each group to a smaller number of summary statistics
+* arrange(): re-order the rows
+
 
 #Select all columns that end with time
 ```{r}
