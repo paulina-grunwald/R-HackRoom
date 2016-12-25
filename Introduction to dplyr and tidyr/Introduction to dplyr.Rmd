@@ -72,28 +72,59 @@ Dplyr implements the following verbs useful for data manipulation:
 
 ##1.1 Select chosen columns using select()##
 
-We can select desired columns by typing their name:
+We can select desired columns by typing their name without using Dplyr and select():
 
 ```{r}
  flights[,c('dep_delay','arr_time','origin')]
 ```
 
+We can perform the same operation using dplyr and select() function:
+
+```{r}
+select(flights, dep_delay, arr_time, origin)
+```
+
+In order to select columns  whose name contains certain character string we need to use following code:
+
+```{r}
+select(flights, starts_with("de"))
+```
+Similar operation can be perform for the columns that end with certain character string:
 
 ```{r}
 #Select all columns that end with time
 select(flights, ends_with("time"))
 ```
 
-#Select columns that contain "_"
+We can also select all columns that contain certain character string:
 ```{r}
 select(flights, contains("_"))
 ```
 
-#Select columns that contain delay 
+```{r}
+select(flights, everything())
+```
+
 
 ```{r}
-select(flights, contains("delay"))
+select(flights, matches("*dep_*"))
 ```
+
+```{r}
+flights2 <- flights
+flights2
+colnames(flights2) <- sprintf("x%d", 1:19)
+select(flights2, num_range("x", 5:10))
+
+```
+
+```{r}
+col <- c("dep_time", "sched_dep_time")
+select(flights,one_of(col))
+#The same code can we written also using pipe operator
+flights %>% select(one_of(col))
+```
+
 
 #Instead writing code provided above we can use pipe operator %>%
 dataset_name %>% select(starts_with("dep"))
