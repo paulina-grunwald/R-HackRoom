@@ -128,24 +128,24 @@ flights %>% select(one_of(col))
 
 Instead writing code provided above we can use pipe operator %>%
 You can use keboard shorecut for %>%
-Mac: Cmd+Shift+M
+Mac: Cmd+Shift+M 
+
 Win: Ctrl+Shift+M
 
 
 Example: dataset_name %>% select(starts_with("dep"))
-
 ```{r}
 flights %>% select(ends_with("time"))
 ```
 
 ##1.2 Select chosen columns using select()##
 
-Selecting Rows from the dataframe
+In order to select ther rows from the dataframe you need to use filter(). You can either use %>% or not.
+Using %>% the code would look like thus:
 dataset_name %>% filter(col1 > X)
 dataset_name %>% filter(col1 %in% c("X", "Y"))
 
 You can combain two expressions using comma:
-
 dataset_name %>% filter(col1 > X, 
   col1 %in% c("X", "Y"))
 
@@ -160,6 +160,7 @@ COMPARISON:
 %in% Group membersit
 is.na
 !is.na
+
 LOGIC:
 & and
 | or
