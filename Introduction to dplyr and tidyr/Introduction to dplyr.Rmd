@@ -178,6 +178,22 @@ or
 ```
 to find out more about comparision expression and logical expressions in R respectively.
 
+Below you can find one more example in which i will use comparision operator !is.na (in R NA is represents missing value) to display only rows in which of flights where air_time is not eqal NA (where value is present)
+
+```{r}
+flights %>% filter(!is.na(air_time))
+```
+
+Now we will combine all we have learnt about select() and filter() operations. From the flights dataframe we will filter only the rows where departure time (dept_time) is less than 600 and then we will select only columns of departure tume(dept_time) and departure delay (dep_delay).
+
+```{r}
+flights %>% 
+  filter(dep_time < 600) %>%
+  select(dep_time, dep_delay)
+```
+
+
+
 ##1.3 Derive new variables from the dataframe using mutate()##
 mutate() function
 
