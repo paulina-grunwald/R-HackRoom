@@ -138,7 +138,7 @@ Example: dataset_name %>% select(starts_with("dep"))
 flights %>% select(ends_with("time"))
 ```
 
-##1.2 Select chosen columns using filter()##
+##1.2 Select chosen rows using filter()##
 
 In order to select ther rows from the dataframe you need to use filter(). You can either use %>% or not.
 Using %>% the code would look like thus:
@@ -148,12 +148,25 @@ dataset_name %>% filter(col1 %in% c("X", "Y"))
 You can combain two expressions using comma:
 dataset_name %>% filter(col1 > X, col1 %in% c("X", "Y"))
 
+Using filter() we will select all rows form the flights dataframe in which month is equal to 1 (so January)
+
 ```{r}
-flights
+#Selecting all rows in which month is equal to 1 (January)
+flights %>% filter(month == 1)
 ```
-Using filter() we will select all rows form the flights dataframe in which month is equal to 12 (so December)
+
+We can also write filter our dataframe finding all rows where destination (dest) is equal to the vector ("PHX", "MIA", "LAX")). Dest refers to the column in flights dataframe. It's not necessary to use $ using Dplyr. 
+
+```{r}
+flights %>% filter( dest %in% c("PHX", "MIA", "LAX"))
+```
+
+Using filter() it is possible to combine mutiple logical expressions. For example we can filter for all the rows in which destination is equal to the vector c("PHX", "MIA", "LAX") and also where month is equal to 1.
 
 
+```{r}
+flights %>% filter(dest %in% c("PHX", "MIA", "LAX", month == 1 ))
+```
 
 
 ##1.3 Derive new variables from the dataframe using mutate()##
