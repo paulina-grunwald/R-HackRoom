@@ -168,6 +168,15 @@ Using filter() it is possible to combine mutiple logical expressions. For exampl
 flights %>% filter(dest %in% c("PHX", "MIA", "LAX", month == 1 ))
 ```
 
+If you are not familiar with logical expression you can type into the console
+```{r}
+?Comparison
+```
+or
+```{r}
+?base::Logic
+```
+to find out more about comparision expression and logical expressions in R respectively.
 
 ##1.3 Derive new variables from the dataframe using mutate()##
 mutate() function
