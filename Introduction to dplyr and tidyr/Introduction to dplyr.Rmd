@@ -2,7 +2,9 @@
 title: "MANAGING AND MUNGING DATA IN R USING DPLYR AND TIDYR"
 author: "Paulina Grunwald - www.R-HackRoom.com"
 date: "December 27, 2016"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 #####MANAGING AND MUNGING DATA IN R USING DPLYR#####
@@ -11,7 +13,7 @@ output: html_document
 
 Dplyr is a new package which provides a set of tools for efficiently manipulating datasets in R. You can install dyplr package and then loadit from the library using following code:
 
-```{r}
+```{r setup, include=FALSE}
 #Install dplyr package
 install.packages("dplyr")
 ```
@@ -230,15 +232,17 @@ It is important to filter for the missing values.
 ##1.4 Grouping observations using group_by()##
 
 The group_by() is a very useful function in dplyr package. What group_by does is splitting the data frame by various data frame observations into groups. The group_by can be combinted with summarise() in order summarise previously grouped data.
-```{r}
- flights
-```
 
+In example presented belw we will first filter the air_time and distance columns for NA values ad then group the data by carrier and using summarise function calculate mean distance, sum of air time and number of observations for each carrier.
 
 ```{r}
+#from flights dataframe
 flights %>% 
+#filer all rows that that are not NA
   filter(!is.na(air_time), !is.na(distance)) %>%
+#group the data by carrier
   group_by(carrier) %>%
+#use summarise function to perform analysis of data for each carrier
   summarise(mean_dist = mean(distance), sum_air_time = sum(air_time), n = n())
 ```
 
