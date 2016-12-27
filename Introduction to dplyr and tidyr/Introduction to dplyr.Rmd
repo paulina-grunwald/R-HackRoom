@@ -1,16 +1,15 @@
 ---
-title: "DPLYR"
+title: "MANAGING AND MUNGING DATA IN R USING DPLYR AND TIDYR"
 author: "Paulina Grunwald - www.R-HackRoom.com"
-date: "December 21, 2016"
+date: "December 27, 2016"
 output: html_document
 ---
 
-#####MANAGING AND MUNGING DATA IN R USING DPLYR AND TIDYR#####
+#####MANAGING AND MUNGING DATA IN R USING DPLYR#####
 
 ###1. Using DPLYR in R
 
-Dplyr is a new package which provides a set of tools for efficiently manipulating datasets in R. You can install and then load dplyr from the library.
-
+Dplyr is a new package which provides a set of tools for efficiently manipulating datasets in R. You can install dyplr package and then loadit from the library using following code:
 
 ```{r}
 #Install dplyr package
@@ -18,11 +17,11 @@ install.packages("dplyr")
 ```
 
 ```{r setup, include=FALSE}
-#Load dplyr from the library
+#Load dplyr package from the library
 library(dplyr)
 ```
 
-In this example we will use nycflights13 dataset which can be installed from Cran repository.
+In this example we will use nycflights13 dataset which can be installed from Cran repository. Nycflights13 dataset represents on-time data for all flights that departed NYC (i.e. JFK, LGA or EWR) in 2013.
 
 ```{r}
 #Install nycflights13 dataset
@@ -31,6 +30,12 @@ install.packages("nycflights13", repos='http://cran.us.r-project.org')
 ```{r}
 #Load nycflights13 from the library
 library("nycflights13")
+```
+
+If you want to find out more about meaning of each collumn, type ?flights in the console.
+
+```{r}
+?flights
 ```
 
 Now we will wrap our dataframe with tbls using special tbl dataframe - tbl_df . Tbl_df is function in dplyr and it used to prevents long table outputs when accidentally calling the data frame. Tbls also shows the size of the dataset () and will display amount of data that will fit in your console.
@@ -219,8 +224,27 @@ flights %>%
 
 ```{r}
 flights %>%
-  summarise(mean= mean(!is.notdist))
+  filter(!is.na(air_time)) %>%
+  summarise(n = n(), n_flight = n_distinct(flight), mean_time = mean(air_time))
 ```
 
+
+It is important to filter for the missing values.
+
+
+##1.4 Grouping observations using group_by()##
+
+The group_by() is a very useful function in dplyr package. What group_by does is splitting the data frame by various data frame observations into groups. The group_by can be combinted with summarise() in order summarise previously grouped data.
+```{r}
+ flights
+```
+
+
+```{r}
+flights %>% 
+  filter(!is.na(air_time), !is.na(distance)) %>%
+  group_by(carrier) %>%
+  summarise(mean_dist = mean(distance), sum_air_time = sum(air_time), n = n())
+```
 
 
