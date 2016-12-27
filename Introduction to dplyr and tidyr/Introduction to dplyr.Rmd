@@ -32,17 +32,12 @@ install.packages("nycflights13", repos='http://cran.us.r-project.org')
 library("nycflights13")
 ```
 
-If you want to find out more about meaning of each collumn, type ?flights in the console.
+Now we will wrap our data frame with tbls using special tbl dataframe - tbl_df . Tbl_df is function in dplyr and it used to prevents long table outputs when accidentally calling the data frame. Tbls also shows the size of the dataset () and will display amount of data that will fit in your console.
 
 ```{r}
-?flights
-```
-
-Now we will wrap our dataframe with tbls using special tbl dataframe - tbl_df . Tbl_df is function in dplyr and it used to prevents long table outputs when accidentally calling the data frame. Tbls also shows the size of the dataset () and will display amount of data that will fit in your console.
-
-```{r}
+#wrap flights data frame with tbls using special tbl dataframe
 flights <- tbl_df(flights)
-#print flights dataframe
+#print flights data frame
 flights
 ```
 
@@ -58,7 +53,7 @@ Now we can check class of flights dataframe:
 ```{r}
 class(flights)
 ```
-As we can see it was converted to tbl_df dataframe.
+As we can see it was converted to tbl_df data frame.
 
 Now let's take a glimpse() of our data.
 ```{r}
