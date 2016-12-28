@@ -235,9 +235,16 @@ It is important to filter for the missing values.
 
 ##1.4 Grouping observations using group_by()##
 
-The group_by() is a very useful function in dplyr package. What group_by does is splitting the data frame by various data frame observations into groups. The group_by can be combinted with summarise() in order summarise previously grouped data.
+The group_by() is a very useful function in dplyr package. What group_by does is splitting the data frame by various data frame observations into groups. The group_by can be combinted with summarise() in order summarise previously grouped data. Summarise() will return it's own. new dataframe.
 
-In example presented belw we will first filter the air_time and distance columns for NA values ad then group the data by carrier and using summarise function calculate mean distance, sum of air time and number of observations for each carrier.
+If we take our flights data frame and use group_by() function and group by carrier group_by will assign observation with the same name carrier to the same group. 
+```{r}
+flights %>% group_by(carrier)
+```
+
+If you just use group_by on your dataframe 
+
+In example presented below we will first filter the air_time and distance columns for NA values ad then group the data by carrier and using summarise function calculate mean distance, sum of air time and number of observations for each carrier.
 
 ```{r}
 #from flights dataframe
@@ -250,4 +257,18 @@ flights %>%
   summarise(mean_dist = mean(distance), sum_air_time = sum(air_time), n = n())
 ```
 
+```{r}
+flights
+```
+
+
+ We can also group by two variables
+If we want to emoving existing grouping we can use ungroup() function. 
+
+```{r}
+flights %>%
+  filter(!is.na(air_time), (!is.na(distance)) %>%
+  group_by(carrier, origin, dest) %>%
+  summarise(mean(air_time), sum(distance))
+```
 
