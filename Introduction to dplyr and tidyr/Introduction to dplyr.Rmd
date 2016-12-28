@@ -3,11 +3,15 @@ title: "MANAGING AND MUNGING DATA IN R USING DPLYR AND TIDYR"
 author: "Paulina Grunwald - www.R-HackRoom.com"
 date: "December 27, 2016"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 #####MANAGING AND MUNGING DATA IN R USING DPLYR#####
+
+```{r}
+library(knitr)
+```
 
 ###1. Using DPLYR in R
 
