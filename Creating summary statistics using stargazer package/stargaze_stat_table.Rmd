@@ -6,6 +6,9 @@ output: html_document
 ---
 
 ```{r}
+#Install package
+install.packages("stargazer")
+
 #Load necessary packages
 library(stargazer)
 library(readr)
@@ -28,9 +31,5 @@ t1 <- stargazer(
   summary.stat = c("min", "p25", "median", "p75", "max", "median", "sd")
 )
 t1
-```
-
-```{r}
-head(df_ww)
 ```
 
