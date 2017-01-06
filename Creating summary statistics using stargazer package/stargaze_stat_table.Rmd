@@ -1,0 +1,36 @@
+---
+title: "Creating summary statistics table using stargazer package"
+author: "www.R-HackRoom.com"
+date: "January 4, 2017"
+output: html_document
+---
+
+```{r}
+#Load necessary packages
+library(stargazer)
+library(readr)
+
+#Load cvs file from url
+df_ww <- read.csv("https://raw.githubusercontent.com/paulina-grunwald/R-HackRoom/master/Creating%20summary%20statistics%20using%20stargazer%20package/wineQualityWhites.csv")
+
+#Create summary statistics using stargazer package
+df_stat <- data.frame(df_ww)
+
+#Drop columns X and quality
+df_stat[,c("X", "quality")]<- list(NULL)
+
+#Assign column names from df_stat data frame to columns variable
+columns <- colnames(df_stat)
+
+#Create summary statistics table using stargazer package
+t1 <- stargazer(
+  df_stat[,columns], type = "text",
+  summary.stat = c("min", "p25", "median", "p75", "max", "median", "sd")
+)
+t1
+```
+
+```{r}
+head(df_ww)
+```
+
